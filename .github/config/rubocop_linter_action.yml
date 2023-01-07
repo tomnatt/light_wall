@@ -1,2 +1,4 @@
 versions:
   - rubocop
+  - rubocop-rake
+  - rubocop-rspec
