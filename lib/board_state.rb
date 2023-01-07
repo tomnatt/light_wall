@@ -17,9 +17,9 @@ class BoardState
 
   def show
     line = ''
-    @board.each do |y|
-      y.each do |x|
-        line << "#{x}\t"
+    @board.each_with_index do |y, y_index|
+      y.each_with_index do |_x, x_index|
+        line << "#{get_point(x_index, y_index) ? 'X' : '-'}\t"
       end
       line << "\n"
     end
