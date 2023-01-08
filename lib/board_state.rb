@@ -1,8 +1,8 @@
 class BoardState
-  attr_reader :board, :once
+  attr_reader :board, :ongoing
 
-  def initialize(x_length = 1, y_length = 1, once: false)
-    @once = once
+  def initialize(x_length = 1, y_length = 1, ongoing: true)
+    @ongoing = ongoing
     # Create board and default all cells to off
     @board = Array.new(y_length) { Array.new(x_length, false) }
   end
