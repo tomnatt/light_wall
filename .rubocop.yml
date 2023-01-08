@@ -25,3 +25,9 @@ Style/FrozenStringLiteralComment:
 
 Style/SymbolArray:
   EnforcedStyle: brackets
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
