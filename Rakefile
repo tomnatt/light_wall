@@ -10,6 +10,7 @@ task :writer do
   WriterScript.write_points
 end
 
+desc 'Run the terminal display'
 task :display do
   td = TerminalDisplay.new
   td.output
