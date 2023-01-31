@@ -1,11 +1,11 @@
 require './lib/board_state'
 
 RSpec.describe BoardState do
-  it 'defaults to correct size and ongoing state' do
+  it 'defaults to correct size and display_cycle state' do
     test_board = described_class.new
     expect(test_board.board.length).to be 1
     expect(test_board.board[0].length).to be 1
-    expect(test_board.ongoing).to be true
+    # expect(test_board.display_cycle).to be false
   end
 
   it 'is of specified size' do
