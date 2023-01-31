@@ -1,4 +1,5 @@
 require './lib/terminal_display'
+require './lib/writer_script'
 
 task :default do
   puts 'Not yet implemented'
@@ -6,20 +7,13 @@ end
 
 desc 'Write a fixed state to file'
 task :writer do
-  require './lib/board_state'
-
-  board = BoardState.new(4, 3)
-  board.set_point(2, 1, true)
-
-  # TODO: Obviously needs work here
-  location = './display_files'
-  File.write("#{location}/foo.txt", Marshal.dump(board))
+  WriterScript.write_points
 end
 
-# task :display do
-#   td = TerminalDisplay.new
-#   td.output
-# end
+task :display do
+  td = TerminalDisplay.new
+  td.output
+end
 
 # task :run_display do
 #   puts 'Run up writer and display'
