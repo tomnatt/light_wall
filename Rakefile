@@ -1,5 +1,5 @@
 require './lib/terminal_display'
-require './lib/writer_script'
+require './scripts/writer_script'
 
 task :default do
   puts 'Not yet implemented'
