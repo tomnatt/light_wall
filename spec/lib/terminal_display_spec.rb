@@ -28,8 +28,22 @@ RSpec.describe TerminalDisplay do
     File.write(File.join(filepath, '3.md'), 'Bar')
   end
 
+  it 'creates the correct matcher for the display files' do
+    td = described_class.new(filepath)
+    expect(td.display_files).to eq File.join(filepath, '*.txt')
+  end
+
   it 'reads the correct display files from the filesystem on startup' do
     td = described_class.new(filepath)
+    expect(td.states.length).to be 4
+  end
+
+  it 'reads the correct display files from the filesystem on re-read' do
+    td = described_class.new(filepath)
+    expect(td.states.length).to be 4
+
+    # Re-read and ensure it doesn't just append states
+    td.read_display_files
     expect(td.states.length).to be 4
   end
 
@@ -88,5 +102,4 @@ RSpec.describe TerminalDisplay do
   # Cycle and re-read not yet implemented
   it 'reads the cycle speed from the filesystem'
   it 'cycles between different states'
-  it 're-reads the states when the filesystem changes'
 end
