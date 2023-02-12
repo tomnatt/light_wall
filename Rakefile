@@ -1,4 +1,4 @@
-require './lib/terminal_display'
+require './scripts/terminal_script'
 require './scripts/writer_script'
 
 task :default do
@@ -12,8 +12,7 @@ end
 
 desc 'Run the terminal display'
 task :display do
-  td = TerminalDisplay.new
-  td.output
+  TerminalScript.new
 end
 
 # task :run_display do
