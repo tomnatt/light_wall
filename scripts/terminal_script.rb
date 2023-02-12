@@ -1,3 +1,4 @@
+require 'filewatcher'
 require './lib/terminal_display'
 
 class TerminalScript
@@ -12,13 +13,8 @@ class TerminalScript
   private
 
   def loop_start
-    loop do
-      sleep 1
-
-      # Check for change
-      # next unless @td.display_files_changed?
-
-      # @td.read_display_files
+    Filewatcher.new(@td.display_files).watch do
+      @td.read_display_files
       @td.output
     end
   end
