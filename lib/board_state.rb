@@ -14,15 +14,4 @@ class BoardState
   def get_point(x_coord, y_coord)
     @board[y_coord][x_coord]
   end
-
-  def show
-    line = ''
-    @board.each_with_index do |y, y_index|
-      y.each_with_index do |_x, x_index|
-        line << "#{get_point(x_index, y_index) ? 'X' : '-'}\t"
-      end
-      line << "\n"
-    end
-    puts line
-  end
 end

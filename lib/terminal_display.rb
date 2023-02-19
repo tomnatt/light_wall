@@ -12,7 +12,7 @@ class TerminalDisplay
 
   def output
     @states.each do |s|
-      s.show
+      display(s)
       puts "\n"
     end
   end
@@ -33,5 +33,18 @@ class TerminalDisplay
       file = File.join(@path_to_display_files, "#{f}.txt")
       @states << Marshal.load(File.read(file))
     end
+  end
+
+  private
+
+  def display(board_state)
+    line = ''
+    board_state.board.each_with_index do |y, y_index|
+      y.each_with_index do |_x, x_index|
+        line << "#{board_state.get_point(x_index, y_index) ? 'X' : '-'}\t"
+      end
+      line << "\n"
+    end
+    puts line
   end
 end
