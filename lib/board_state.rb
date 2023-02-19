@@ -1,9 +1,10 @@
 class BoardState
-  attr_reader :board
+  attr_reader :board, :display_time
 
-  def initialize(x_length = 1, y_length = 1)
+  def initialize(x_length = 1, y_length = 1, display_time = 1)
     # Create board and default all cells to off
     @board = Array.new(y_length) { Array.new(x_length, false) }
+    @display_time = display_time
   end
 
   def set_point(x_coord, y_coord, state)

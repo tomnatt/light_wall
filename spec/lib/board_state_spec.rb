@@ -5,7 +5,7 @@ RSpec.describe BoardState do
     test_board = described_class.new
     expect(test_board.board.length).to be 1
     expect(test_board.board[0].length).to be 1
-    # expect(test_board.display_cycle).to be false
+    expect(test_board.display_time).to be 1
   end
 
   it 'is of specified size' do
@@ -23,6 +23,11 @@ RSpec.describe BoardState do
         expect(test_board.board[y][x]).to be false
       end
     end
+  end
+
+  it 'has the correct display time' do
+    test_board = described_class.new(1, 1, 5)
+    expect(test_board.display_time).to be 5
   end
 
   it 'changes state of an individual point' do
