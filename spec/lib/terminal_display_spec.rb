@@ -12,14 +12,18 @@ RSpec.describe TerminalDisplay do
     board.set_point(0, 0, true)
     File.write(File.join(filepath, '0.txt'), Marshal.dump(board))
 
+    board = BoardState.new(2, 2)
+    board.set_point(0, 0, true)
     board.set_point(0, 1, true)
     File.write(File.join(filepath, '1.txt'), Marshal.dump(board))
 
-    board.set_point(0, 0, false)
+    board = BoardState.new(2, 2)
+    board.set_point(0, 1, true)
     board.set_point(1, 1, true)
     File.write(File.join(filepath, '11.txt'), Marshal.dump(board))
 
-    board.set_point(0, 1, false)
+    board = BoardState.new(2, 2, 3)
+    board.set_point(1, 1, true)
     board.set_point(1, 0, true)
     File.write(File.join(filepath, '2.txt'), Marshal.dump(board))
 
@@ -31,6 +35,17 @@ RSpec.describe TerminalDisplay do
   it 'creates the correct matcher for the display files' do
     td = described_class.new(filepath)
     expect(td.display_files).to eq File.join(filepath, '*.txt')
+  end
+
+  it 'sets the correct defaults on initialisation' do
+    td = described_class.new
+    expect(td.display_files).to eq './display_files/*.txt'
+    expect(td.loop).to be true
+  end
+
+  it 'correctly sets loop status' do
+    td = described_class.new(filepath, false)
+    expect(td.loop).to be false
   end
 
   it 'reads the correct display files from the filesystem on startup' do
@@ -99,7 +114,8 @@ RSpec.describe TerminalDisplay do
     expect(td.states[3].get_point(1, 1)).to be board.get_point(1, 1)
   end
 
-  # Cycle and re-read not yet implemented
-  it 'reads the cycle speed from the filesystem'
-  it 'cycles between different states'
+  # Cycle not yet implemented
+  it 'reads the cycle speed from the filesystem' do
+    expect(described_class.new(filepath).states[2].display_time).to be 3
+  end
 end

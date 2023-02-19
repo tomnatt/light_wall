@@ -1,11 +1,12 @@
 require './lib/board_state'
 
 class TerminalDisplay
-  attr_reader :states, :display_files
+  attr_reader :states, :display_files, :loop
 
-  def initialize(path_to_display_files = './display_files')
+  def initialize(path_to_display_files = './display_files', loop = true)
     @path_to_display_files = path_to_display_files
     @display_files = File.join(@path_to_display_files, '*.txt')
+    @loop = loop
     @states = []
     read_display_files
   end

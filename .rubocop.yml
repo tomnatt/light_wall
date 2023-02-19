@@ -26,6 +26,9 @@ Style/Documentation:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
+Style/OptionalBooleanParameter:
+  AllowedMethods: ['initialize']
+
 Style/SymbolArray:
   EnforcedStyle: brackets
 
