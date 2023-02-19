@@ -1,3 +1,9 @@
+display_files/*
+!display_files/.keep
+
+spec/tmp/*
+!spec/tmp/.keep
+
 *.gem
 *.rbc
 /.config
