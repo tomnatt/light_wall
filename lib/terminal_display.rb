@@ -1,19 +1,22 @@
 require './lib/board_state'
 
 class TerminalDisplay
-  attr_reader :states, :display_files
+  attr_reader :states, :display_files, :loop
 
-  def initialize(path_to_display_files = './display_files')
+  def initialize(path_to_display_files = './display_files', loop = true)
     @path_to_display_files = path_to_display_files
     @display_files = File.join(@path_to_display_files, '*.txt')
+    @loop = loop
     @states = []
     read_display_files
   end
 
   def output
     @states.each do |s|
-      s.show
+      display(s)
       puts "\n"
+
+      sleep s.display_time
     end
   end
 
@@ -33,5 +36,18 @@ class TerminalDisplay
       file = File.join(@path_to_display_files, "#{f}.txt")
       @states << Marshal.load(File.read(file))
     end
+  end
+
+  private
+
+  def display(board_state)
+    line = ''
+    board_state.board.each_with_index do |y, y_index|
+      y.each_with_index do |_x, x_index|
+        line << "#{board_state.get_point(x_index, y_index) ? 'X' : '-'}\t"
+      end
+      line << "\n"
+    end
+    puts line
   end
 end
