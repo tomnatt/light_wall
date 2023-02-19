@@ -15,6 +15,8 @@ class TerminalDisplay
     @states.each do |s|
       display(s)
       puts "\n"
+
+      sleep s.display_time
     end
   end
 
